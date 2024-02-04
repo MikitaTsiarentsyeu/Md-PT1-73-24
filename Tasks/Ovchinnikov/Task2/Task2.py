@@ -83,6 +83,9 @@ if(incrementedHours >= 13):
 if(timeHours >= 13):
     timeHours -= (timeHours // 12) * 12
 
+if(timeHours == 0):
+    timeHours = 12
+
 minutesDecimals = 0
 minutesNumbers = 0
 if(timeMinutes > 20):
