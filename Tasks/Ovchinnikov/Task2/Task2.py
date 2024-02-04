@@ -62,6 +62,7 @@ minutesAndHoursLabelDictionary = {
     40: ["", "минут"],
 }
 
+#data input and parcing with safe checks for amount of hours/minutes
 timeDataUnrefined = input("Input your time in hh:mm pattern:")
 if(timeDataUnrefined.find(':') == -1):
     print(f"Time isn't in correct pattern")
@@ -74,6 +75,8 @@ if(timeHours >= 24 or timeHours < 0 or timeMinutes >= 60 or timeMinutes < 0):
     print(f"Time isn't valid, your time is: {timeHours}-{timeMinutes}")
 
 print(f"Your data is {timeHours} hours and {timeMinutes} minutes")
+
+#calculation every base valuable outside of if else to remove dublicates
 incrementedHours = timeHours + 1
 if(incrementedHours >= 13): 
     incrementedHours -= (incrementedHours // 12) * 12
@@ -92,10 +95,9 @@ if(timeMinutes > 20):
     minutesDecimals = (timeMinutes // 10) * 10
     minutesNumbers = timeMinutes % 10
 
-# main task
+# -- Main Task -- 
 if(timeMinutes == 0):
-    if(timeHours < 20):
-        print(f"[RU] Ваше время: {numbersDictionary[timeHours][0]} {minutesAndHoursLabelDictionary[timeHours][0]} ровно")
+    print(f"[RU] Ваше время: {numbersDictionary[timeHours][0]} {minutesAndHoursLabelDictionary[timeHours][0]} ровно")
 
 elif(timeMinutes < 30):
     timeHoursLabel = numbersDictionary[incrementedHours][2]
