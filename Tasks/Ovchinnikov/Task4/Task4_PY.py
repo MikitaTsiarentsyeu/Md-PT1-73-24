@@ -2,6 +2,11 @@
 #2. Allow the user to enter a parameter "maximum number of characters per line", which must be greater than 35.
 #3. Format the text taking into account the maximum number of characters, but if a word does not fit entirely on a line, it should be moved to the next one, and the spacing between words should be evenly increased (similarly to the "Justify" function in text editors). There is a module called ‘textwrap’ which can do it, you may take a look at it but do not use for this task.
 #4. Write the resulting text to a new file and notify the user about it.
+def CheckIfWordHaveNSeparator(checkWord):
+    if('\n' in checkWord):
+        return True
+    return False
+
 textFile = open("Task4\\text.txt","r")
 fileReadedData = textFile.read()
 textFile.close() 
@@ -9,13 +14,16 @@ textFile.close()
 wordsList = fileReadedData.strip().split(' ')
 maxWordSize = 0
 
-print(len(wordsList))
+#separate by \n
+for i in range(len(wordsList)):
+    if(CheckIfWordHaveNSeparator(wordsList[i])):
+        wordSubList = wordsList[i].split('\n')
+        wordsList[i] = wordSubList[0] + '\n'
+        wordsList.insert(i+1, wordSubList[1])
 
 for i in range(len(wordsList)):
     if len(wordsList[i]) > maxWordSize:
         maxWordSize = len(wordsList[i])
-
-print(f"Max word lenght:{maxWordSize}")
 
 lineMaximumLenght = 0 
 while lineMaximumLenght < maxWordSize:
@@ -35,8 +43,20 @@ def CheckIfWordWillFitInTheLine(addingWord, lineTargetLenght):
         return True
 
 for i in range(len(wordsList)):
-    #add check for \n
-    #if word have \n in it end, add the word to current line and end it
+    if(CheckIfWordHaveNSeparator(wordsList[i])):
+        if(CheckIfWordWillFitInTheLine(wordsList[i], currentLineLimit)):
+            textLines[textLinesIndex] += f"{wordsList[i]}"
+            currentLineLimit = lineMaximumLenght
+            textLinesIndex += 1
+            textLines.append("")
+        else:
+            textLines[textLinesIndex] = textLines[textLinesIndex].strip()
+            currentLineLimit = lineMaximumLenght
+            textLinesIndex += 1
+            textLines.append(f"{wordsList[i]}")
+            textLinesIndex += 1
+            textLines.append("")
+        continue
 
     if(CheckIfWordWillFitInTheLine(wordsList[i], currentLineLimit)):
         textLines[textLinesIndex] += f"{wordsList[i]} "
@@ -50,6 +70,11 @@ for i in range(len(wordsList)):
 
 def SetLineToStandartLenght(textLine, lineTargetLenght):
     textLineModified = ""
+    
+    if(CheckIfWordHaveNSeparator(textLine)):
+        print(fr"Check Line:[{textLine}], ModifiedString: [{textLine}], lenght:[{len(textLine)}->{len(textLine)}], TargetLeght:{lineTargetLenght}")
+        return textLine
+    
     wordList = textLine.strip().split(' ')
 
     currentLinesCharacters = len(textLine)
