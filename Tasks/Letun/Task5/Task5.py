@@ -35,7 +35,7 @@ def filter_long_strings(strings):
 
 strings = ["Hello", "World", "How", "Are", "PSV", "Liverpool"]
 long_strings = filter_long_strings(strings)
-print(long_strings) 
+print(long_string)
 
 
 # 4. Write a function that takes a string as an argument and returns two numbers, first for count of lower case letters, 
@@ -63,6 +63,7 @@ print(lowercase_count, uppercase_count)
 #    get_ranges([4,7,10])  -> "4, 7, 10"
 #    get_ranges([2, 3, 8, 9])  -> "2-3, 8-9"
 
+
 def get_ranges(nums):
     ranges = []
     start = end = nums[0]
@@ -82,5 +83,3 @@ def get_ranges(nums):
 print(get_ranges([0, 1, 2, 3, 4, 7, 8, 10]))  # Output: "0-4, 7-8, 10"
 print(get_ranges([4, 7, 10]))  # Output: "4, 7, 10"
 print(get_ranges([2, 3, 8, 9]))  # Output: "2-3, 8-9"
-
-
