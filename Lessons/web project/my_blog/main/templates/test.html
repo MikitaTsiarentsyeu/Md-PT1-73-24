@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,5 +8,7 @@
 <body>
     <h3>Current time:</h3>
     <p>{{my_time}}</p>
+    <img src="{% static 'main/img/photo.jpg' %}" width="50%">
+    <img src="{% static 'main/img/test.png' %}" width="50%">
 </body>
 </html>
