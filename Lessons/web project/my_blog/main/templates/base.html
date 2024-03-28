@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'main/css/style.css' %}">
+
+  </head>
+
+  <body>
+    <header>
+        <a href="{% url 'landing' %}">
+            <h1>Django Blog Example</h1>
+        </a>
+    </header>
+    <div class="container">
+      <div class="column">
+        
+        {% block content %}
+        {% endblock %}
+
+      </div>
+      
+    </div>
+    <footer>
+      <p>&copy; 2023 Django Blog Example</p>
+    </footer>
+  </body>
+</html>

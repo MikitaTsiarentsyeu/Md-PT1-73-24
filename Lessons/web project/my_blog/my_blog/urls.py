@@ -29,7 +29,7 @@ urlpatterns = [
     path('posts/', main_views.posts),
     path('posts/create', main_views.create_post, name='create'),
     path('posts/<int:post_url_id>', main_views.browse_post, name='browse'),
-    path('wiki/<str:pub_name>', main_views.browse_post, name='browse'),
+    # path('wiki/<str:pub_name>', main_views.browse_post, name='browse'),
 ]
 
 urlpatterns +=  static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

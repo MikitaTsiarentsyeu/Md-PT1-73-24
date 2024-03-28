@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 import datetime
 from .models import Post, Author
 from django.core.exceptions import ObjectDoesNotExist
@@ -14,7 +14,18 @@ def pattern_view(request, param):
     return render(request, 'test.html', {"my_time":now})
 
 def posts(request):
-    pass
+    posts = Post.objects.all()
+
+    # posts_list = ''
+
+    # for post in posts:
+    #     posts_list += f"<li><p>{post.title}</p></li>"
+
+    # response = f"<h1>All posts</h1><ul>{posts_list}</ul>"
+
+    # return HttpResponse(response)
+
+    return render(request, 'posts.html', {"posts":posts})
 
 def browse_post(request, post_url_id):
     try:
@@ -22,9 +33,8 @@ def browse_post(request, post_url_id):
     except ObjectDoesNotExist:
         # return HttpResponseNotFound("cannot find post specified")
         raise Http404("cannot find post specified")
-    print(p.title, type(p))
-    now = datetime.datetime.now()
-    return render(request, 'test.html', {"my_time":now})
+    
+    return render(request, 'browse_post.html', {'post':p})
 
 def create_post(request):
     pass
