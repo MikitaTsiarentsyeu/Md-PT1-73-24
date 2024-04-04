@@ -9,8 +9,9 @@ header, footer {
   background-color: #333;
   color: #fff;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
+  
 }
 
 .container {

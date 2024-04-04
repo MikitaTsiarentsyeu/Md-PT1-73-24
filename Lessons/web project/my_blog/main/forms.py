@@ -43,7 +43,7 @@ class AddPostModelForm(forms.ModelForm):
 
         raw_data = self.cleaned_data['title']
         # raw_content = self.cleaned_data['content'] error
-        if raw_data == "test title":
+        if raw_data == "title title":
             raise ValidationError("do not name it 'test title'!")
         
         cleaned_data = raw_data.strip()

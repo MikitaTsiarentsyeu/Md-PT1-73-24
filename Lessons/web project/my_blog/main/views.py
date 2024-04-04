@@ -4,6 +4,7 @@ from .models import Post, Author
 from .forms import AddPost, AddPostModelForm
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound, Http404
+from django.contrib.auth.decorators import permission_required
 
 def test(request):
     now = datetime.datetime.now()
@@ -16,6 +17,8 @@ def pattern_view(request, param):
 
 def posts(request):
     posts = Post.objects.all()
+    
+    vp = request.session.get('viewed', [])
 
     # posts_list = ''
 
@@ -26,17 +29,22 @@ def posts(request):
 
     # return HttpResponse(response)
 
-    return render(request, 'posts.html', {"posts":posts})
+    return render(request, 'posts.html', {"posts":posts, "vp":vp})
 
 def browse_post(request, post_url_id):
     try:
         p = Post.objects.get(id=post_url_id)
+        vp = request.session.get('viewed', [])
+        if post_url_id not in vp:
+            vp.append(post_url_id)
+        request.session['viewed'] = vp
     except ObjectDoesNotExist:
         # return HttpResponseNotFound("cannot find post specified")
         raise Http404("cannot find post specified")
     
     return render(request, 'browse_post.html', {'post':p})
 
+@permission_required('main.post.can_edit')
 def create_post(request):
 
     if request.method == "POST":
@@ -45,7 +53,7 @@ def create_post(request):
         if form.is_valid():
             post_entry = form.save(commit=False)
             post_entry.issued = datetime.datetime.now()
-            post_entry.author = Author.objects.all()[0]
+            post_entry.author = Author.objects.get(email=request.user.email)
             # post_entry.title = form.cleaned_data['title']
             # post_entry.content = form.cleaned_data['content']
             # post_entry.post_type = form.cleaned_data['post_type']

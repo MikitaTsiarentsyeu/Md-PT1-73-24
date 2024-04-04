@@ -9,7 +9,12 @@ Django Blog Example
         <a href="{% url 'browse' post.id %}">
             <h2>{{post.title}}</h2>
         </a>
-        <p>by {{post.author.name}}</p>
+        <p>
+            by {{post.author.name}}
+            {% if post.id in vp %}
+            |viewed
+            {% endif %}
+        </p> 
         <img src="{{post.image.url}}" width="75%">
     {% endfor %}
 {% endblock %}
