@@ -1,0 +1,45 @@
+<html>
+<head>
+    <title>Store</title>
+    <style>
+        .header {
+            display: flex; 
+            border: 2px outset cyan;
+            background-color: lightblue;
+            text-align: center;
+            justify-content: space-between; 
+            align-items: center;
+        }
+        .itemContainer {
+            display: flex; 
+            justify-content: space-around; 
+            align-items:center;
+            width:auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header">
+            <h2>Home</h2> 
+            <h3>Items</h3>
+            <h3>Basket<h3>
+            <h3>Profile<h3>  
+        </div>
+    </header>
+
+    <div class="container">
+        <div class="column">
+          
+          {% block content %}
+          {% endblock %}
+  
+        </div>
+      </div>
+
+    <footer>
+        <p>Helldivers store, 2024</p>
+    </footer>
+    <!--Add cite navigation tab, home, item list, profile and basket-->
+</body>
+</html>

@@ -17,3 +17,8 @@ class ItemReviewList(models.Model):
     author = models.ForeignKey('UserList', on_delete=models.CASCADE)
     rating = models.PositiveIntegerField()
     postTime = models.DateTimeField()
+
+class OnSaleList(models.Model):
+    itemData = models.ForeignKey('SellItemList', on_delete=models.CASCADE)
+    savePercentage = models.PositiveIntegerField()
+    saleEndTime = models.DateTimeField()

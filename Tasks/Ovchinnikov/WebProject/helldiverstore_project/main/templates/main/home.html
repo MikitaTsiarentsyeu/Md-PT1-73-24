@@ -1,0 +1,15 @@
+{% extends 'main/base.html' %}
+<!--Add minor text, news tab, special offer tab with 3 item sets in random with sales-->
+
+{% block content %}   
+    <h1>Current sales:</h1>
+    <h2>{{item.itemData.name}}</h1>
+    <div class="itemContainer">
+        <p>{{item.itemData.description}}</p>
+        <img src="{{item.itemData.image.url}}" width="7%">
+    </div>
+    <p>-{{item.savePercentage}}%</p>
+    <p>End time: {{saleTime.days}} days ({{item.saleEndTime}})</p>
+    <!--Add button to add to basket-->
+    <h2>Buy now!</h1>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+<!-- Add list of all items available with Name, Image, Price-->
+
+{% block content %}   
+    <h2>Currently in stock:<h2>
+    <ul>
+    {% for item in items %}
+        <li>
+            <h3>{{item.name}}</h3>
+                <div class="itemContainer">
+                    <p>{{item.description}}</p>
+                    <img src="{{item.image.url}}" width="7%">
+                </div>
+        </li>
+    {% endfor %}
+    </ul>
+{% endblock %}
