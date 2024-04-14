@@ -15,6 +15,7 @@ class SellItemList(models.Model):
 
 class ItemReviewList(models.Model):
     author = models.ForeignKey('UserList', on_delete=models.CASCADE)
+    item_id = models.IntegerField(blank= False,)
     rating = models.PositiveIntegerField()
     postTime = models.DateTimeField()
 

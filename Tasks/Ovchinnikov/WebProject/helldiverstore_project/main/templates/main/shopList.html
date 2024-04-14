@@ -6,11 +6,11 @@
     <ul>
     {% for item in items %}
         <li>
-            <h3>{{item.name}}</h3>
-                <div class="itemContainer">
-                    <p>{{item.description}}</p>
-                    <img src="{{item.image.url}}" width="7%">
-                </div>
+            <h3><a href="shop/{{forloop.counter}}">{{item.name}}</a></h3>
+            <div class="itemContainer">
+                <p>{{item.description}}</p>
+                <img src="{{item.image.url}}" width="7%">
+            </div>
         </li>
     {% endfor %}
     </ul>

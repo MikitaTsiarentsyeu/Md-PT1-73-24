@@ -1,0 +1,36 @@
+{% extends 'main/base.html' %}
+
+{% block content %}   
+    <h3>{{item.name}}</h3>
+    <div class="itemContainer">
+        <p>{{item.description}}</p>
+        <img src="{{item.image.url}}" width="7%">
+    </div>    
+
+    <div class="itemContainer">
+        <p>Item price:</p>
+        <p>Item rating:</p>
+    </div>
+
+    <div class="itemContainer">
+        <h3>Add your rating</h3>
+        {% block rating %}
+        {% csrf_token %}
+        <form method="post" action="/shop">
+            {% csrf_token %}
+            {{form}}
+            <button type="submit", name="save">Share review</button>
+        </form>        
+        {% endblock %}
+    </div>
+
+    <h3>{{item.name}} rating:</h3>
+    <ul>
+        {% for item in '0123456789'|make_list %}
+            <li>
+                <p>Some review</p>
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
