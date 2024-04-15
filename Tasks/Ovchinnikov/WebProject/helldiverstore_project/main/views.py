@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
-from .models import OnSaleList, SellItemList, ItemReviewList
+from .models import OnSaleList, SellItemList, ItemReviewList, UserList
 from .itemRatingForm import AddReview
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound, Http404
@@ -29,12 +29,24 @@ def itemIndex(response, itemIndex):
     
     if response.method == "POST":
         ratingForm = AddReview(response.POST)
+        print(response.POST)
         if ratingForm.is_valid():
-            formData = ratingForm.cleaned_data["reviewRating"]
-            reviewsTable = ItemReviewList()
+            reviewText = ratingForm.cleaned_data["reviewText"]
+            reviewRating = ratingForm.cleaned_data["reviewRating"]
+            reviewsTable = ItemReviewList(author = UserList.objects.all()[0], 
+                                          item_id = itemIndex, review_text = reviewText, 
+                                          rating = reviewRating, postTime = datetime.now())
             reviewsTable.save()
-            return HttpResponseRedirect("shop/%i" %reviewsTable)
+            return HttpResponseRedirect("/shop/%i" %itemIndex)
     else:
         ratingForm = AddReview()
     
-    return render(response, "main/shopItem.html", {'item':item, 'form':ratingForm})
+    # add rating
+    try:
+        itemReviews = ItemReviewList.objects.filter(item_id = itemIndex)
+        print(f"itemReviews:{itemReviews}")
+    except ObjectDoesNotExist:
+        # return HttpResponseNotFound("cannot find post specified")
+        raise Http404("cannot find post specified")
+    
+    return render(response, "main/shopItem.html", {'item':item, 'form':ratingForm, 'reviews':itemReviews})

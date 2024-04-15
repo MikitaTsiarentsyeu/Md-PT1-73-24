@@ -16,7 +16,7 @@
         <h3>Add your rating</h3>
         {% block rating %}
         {% csrf_token %}
-        <form method="post" action="/shop">
+        <form method="post" action="">
             {% csrf_token %}
             {{form}}
             <button type="submit", name="save">Share review</button>
@@ -26,9 +26,12 @@
 
     <h3>{{item.name}} rating:</h3>
     <ul>
-        {% for item in '0123456789'|make_list %}
+        {% for review in reviews %}
             <li>
-                <p>Some review</p>
+                <p>{{review.author.name}}</p>
+                <p>{{review.review_text}}</p>
+                <p>Item rating:{{review.rating}}</p>
+                <p>Posted:{{review.postTime}}</p>
             </li>
         {% endfor %}
     </ul>

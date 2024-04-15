@@ -4,17 +4,46 @@
     <style>
         .header {
             display: flex; 
-            border: 2px outset cyan;
-            background-color: lightblue;
+            background-color: #111;
             text-align: center;
             justify-content: space-between; 
+            width: 100%;
+            height: 10%;
             align-items: center;
+            padding-left: 20px;
+            padding-right: 20px;
+            padding-top: 10px;
         }
+
+        .header a {
+            padding: 6px, 5px, 6px, 20px;
+            text-decoration: none;
+            color: #818181;
+            display: block; 
+        }
+
+        .header a:hover {
+            color: #ffffff;
+        }
+
         .itemContainer {
             display: flex; 
             justify-content: space-around; 
             align-items:center;
             width:auto;
+        }
+
+        .buy {
+            top: 100px;
+            opacity: 1;
+            padding: 10px 30px;
+            margin-top: 15px;
+            color: #000000;
+            text-decoration: none;
+            background: #ffce00;
+            border-radius: 30px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
     </style>
 </head>
@@ -23,8 +52,8 @@
         <div class="header">
             <h2><a href="/">Home</a></h2> 
             <h3><a href="/shop">Items</a></h3>
-            <h3>Basket<h3>
-            <h3>Profile<h3>  
+            <h3><a href="/basket">Basket</a><h3>
+            <h3><a href="/profile">Profile</a><h3>  
         </div>
     </header>
 
