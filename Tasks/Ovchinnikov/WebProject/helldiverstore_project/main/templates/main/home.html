@@ -8,7 +8,8 @@
         <p>{{item.itemData.description}}</p>
         <img src="{{item.itemData.image.url}}" width="7%">
     </div>
-    <p>-{{item.savePercentage}}%</p>
+    <p>Price: {{item.itemData.item_price}} -{{item.savePercentage}}%</p>
+    <p>{{postSalePrice}} Super credits</p>
     <p>End time: {{saleTime.days}} days ({{item.saleEndTime}})</p>
     <!--Add button to add to basket-->
     <a href="#" class="buy">Buy now!</a>

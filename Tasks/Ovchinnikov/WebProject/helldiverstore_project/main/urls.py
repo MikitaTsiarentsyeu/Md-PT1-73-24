@@ -5,4 +5,6 @@ urlpatterns = [
     path("", views.home, name="home"),
     path("shop", views.itemList, name="shop"),
     path("shop/<int:itemIndex>", views.itemIndex, name="itemIndex"),
+    path("register", views.userRegistration, name="register"),
+    path("enlist", views.userLogin, name="enlist"),
 ]

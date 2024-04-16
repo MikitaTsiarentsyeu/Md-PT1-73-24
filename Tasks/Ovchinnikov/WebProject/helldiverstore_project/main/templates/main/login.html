@@ -1,0 +1,12 @@
+{% extends 'main/base.html' %}
+
+{% block content %}   
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        {{form}}
+        <div class="buy">
+            <button type="submit" class="btn btn-success">Login</button>
+        </div>
+        <p>Don't have an acount? Enlist Helldivers today <a href="/register">here</a></p>
+    </form>
+{% endblock %}

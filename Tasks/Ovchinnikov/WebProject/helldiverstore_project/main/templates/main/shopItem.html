@@ -8,20 +8,21 @@
     </div>    
 
     <div class="itemContainer">
-        <p>Item price:</p>
+        <p>Item price:{{item.item_price}} Super credits</p>
         <p>Item rating:</p>
     </div>
 
     <div class="itemContainer">
+        {% if user.is_authenticated %}
         <h3>Add your rating</h3>
         {% block rating %}
-        {% csrf_token %}
         <form method="post" action="">
             {% csrf_token %}
             {{form}}
             <button type="submit", name="save">Share review</button>
         </form>        
         {% endblock %}
+        {% endif %}
     </div>
 
     <h3>{{item.name}} rating:</h3>

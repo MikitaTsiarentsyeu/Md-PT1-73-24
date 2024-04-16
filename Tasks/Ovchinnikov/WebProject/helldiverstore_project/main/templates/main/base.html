@@ -21,6 +21,11 @@
             color: #818181;
             display: block; 
         }
+        .header p {
+            padding: 6px, 5px, 6px, 20px;
+            text-decoration: none;
+            color: #818181;
+        }
 
         .header a:hover {
             color: #ffffff;
@@ -53,6 +58,13 @@
             <h2><a href="/">Home</a></h2> 
             <h3><a href="/shop">Items</a></h3>
             <h3><a href="/basket">Basket</a><h3>
+            {% if user.is_authenticated %}
+            <h4><p>Wellcome back {{user.username}}</p><h4>  
+                <form action="" method="post">
+                    {% csrf_token %}
+                    <button type="submit">Log Out</button>
+                  </form>
+            {% endif %}
             <h3><a href="/profile">Profile</a><h3>  
         </div>
     </header>
