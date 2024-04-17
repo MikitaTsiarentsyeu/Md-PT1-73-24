@@ -60,12 +60,17 @@
             <h3><a href="/basket">Basket</a><h3>
             {% if user.is_authenticated %}
             <h4><p>Wellcome back {{user.username}}</p><h4>  
-                <form action="" method="post">
-                    {% csrf_token %}
-                    <button type="submit">Log Out</button>
-                  </form>
-            {% endif %}
+            <form method="post" action="{% url 'logout' %}?next={{response.path}}">
+                {% csrf_token %}
+                <button type="submit">Log out</button>
+            </form>
             <h3><a href="/profile">Profile</a><h3>  
+            {% else %}
+            <form method="post" action="{% url 'enlist' %}?next={{response.path}}">
+                {% csrf_token %}
+                <button type="submit">Enlist now</button>
+            </form>
+            {% endif %}
         </div>
     </header>
 

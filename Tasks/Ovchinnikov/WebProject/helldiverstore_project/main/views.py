@@ -5,7 +5,7 @@ from .citeForms import AddReview
 from django.core.exceptions import ObjectDoesNotExist
 from django.http import HttpResponseNotFound, Http404
 from datetime import datetime, timezone
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 # Create your views here.
 
@@ -89,3 +89,7 @@ def userLogin(response):
         userAuthenticationForm = AuthenticationForm()
 
     return render(response, "main/login.html", {"form":userAuthenticationForm})
+
+def logout_view(request):
+    logout(request)
+    return redirect("/")

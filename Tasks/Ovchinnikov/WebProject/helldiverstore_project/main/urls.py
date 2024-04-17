@@ -7,4 +7,5 @@ urlpatterns = [
     path("shop/<int:itemIndex>", views.itemIndex, name="itemIndex"),
     path("register", views.userRegistration, name="register"),
     path("enlist", views.userLogin, name="enlist"),
+    path("logout", views.logout_view, name="logout"),
 ]
