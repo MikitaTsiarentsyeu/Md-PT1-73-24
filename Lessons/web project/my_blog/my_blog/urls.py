@@ -25,11 +25,14 @@ urlpatterns = [
     path('main/test/', main_views.test),
     # path('main/<int:param>', main_views.pattern_view),
     # path('main/<str:param>', main_views.pattern_view),
-    path('', main_views.posts, name='landing'),
-    path('posts/', main_views.posts),
-    path('posts/create', main_views.create_post, name='create'),
-    path('posts/<int:post_url_id>', main_views.browse_post, name='browse'),
-    # path('wiki/<str:pub_name>', main_views.browse_post, name='browse'),
+    # path('', main_views.posts, name='landing'),
+    # path('posts/', main_views.posts),
+    # path('posts/create', main_views.create_post, name='create'),
+    # path('posts/<int:post_url_id>', main_views.browse_post, name='browse'),
+    path('', main_views.PostsView.as_view(), name='landing'),
+    path('posts/', main_views.PostsView.as_view()),
+    path('posts/create', main_views.CreatePostView.as_view(), name='create'),
+    path('posts/<int:post_url_id>', main_views.PostView.as_view(), name='browse'),
 ]
 
 urlpatterns += [ path('accounts/', include('django.contrib.auth.urls')),]
