@@ -22,7 +22,7 @@ from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('main/test/', main_views.test),
+    # path('main/test/', main_views.test),
     # path('main/<int:param>', main_views.pattern_view),
     # path('main/<str:param>', main_views.pattern_view),
     # path('', main_views.posts, name='landing'),

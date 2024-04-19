@@ -8,14 +8,14 @@ from django.contrib.auth.decorators import permission_required
 
 from django.views import View
 
-def test(request):
-    now = datetime.datetime.now()
-    return render(request, 'test.html', {"my_time":now})
+# def test(request):
+#     now = datetime.datetime.now()
+#     return render(request, 'test.html', {"my_time":now})
 
-def pattern_view(request, param):
-    print(param, type(param))
-    now = datetime.datetime.now()
-    return render(request, 'test.html', {"my_time":now})
+# def pattern_view(request, param):
+#     print(param, type(param))
+#     now = datetime.datetime.now()
+#     return render(request, 'test.html', {"my_time":now})
 
 class PostModelViewBase:
 
@@ -63,16 +63,6 @@ class PostsView(PostModelViewBase, SessionViewBase, View):
 
     def get(self, request):
         posts = self.get_all_posts()
-        viewed_posts = self.get_post_id_from_session(request)
-        return render(request, self.template, {'posts':posts, 'viewed_posts': viewed_posts})
-
-
-class PostsView(PostModelViewBase, SessionViewBase, View):
-
-    template = 'posts.html'
-
-    def get(self, request):
-        posts = self.get_all_posts()
         vp = self.get_post_id_from_session(request)
         return render(request, self.template, {'posts':posts, 'vp': vp})
 
@@ -87,7 +77,7 @@ class PostView(PostModelViewBase, SessionViewBase, View):
 
         return render(request, self.template, {'post':p, 'id':post_url_id})
     
-class CreatePostView(PostModelViewBase, SessionViewBase, View):
+class CreatePostView(PostModelViewBase, View):
 
     template = 'create.html'
     form = AddPostModelForm
